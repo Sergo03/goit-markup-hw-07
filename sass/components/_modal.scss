@@ -10,14 +10,13 @@
 
   opacity: 1;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.backdrop.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.backdrop.is-hidden .modal {
-  transform: translate(-50%, -50%) scale(0.7);
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  &.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
 }
 
 .modal {
@@ -33,24 +32,39 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-}
+  &-title {
+    color: $title-text-color;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.15;
+    text-align: center;
+    padding-top: 40px;
+    margin-bottom: 12px;
+  }
+  &-form {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  &-form-input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 1px solid rgba(33, 33, 33, 0.2);
+    padding-left: 42px;
+    border-radius: 4px;
+    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-.hero-title {
-  color: $primary-white-color;
-  letter-spacing: 0.06em;
-  font-size: 44px;
-  line-height: 1.363;
-  font-weight: 900;
-  text-align: center;
-  text-transform: uppercase;
-
-  margin-top: 0px;
-  margin-bottom: 30px;
-}
-
-.btn-modal:hover,
-.btn-modal:focus {
-  fill: #2196f3;
+    &:focus {
+      outline: none;
+      border: 1px solid $secondary-text-color;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus ~ .icon-modal {
+      fill: $secondary-text-color;
+    }
+  }
 }
 
 .btn-modal {
@@ -60,6 +74,10 @@
   left: 91%;
   border: none;
   cursor: pointer;
+  &:hover,
+  &:focus {
+    fill: #2196f3;
+  }
 }
 .circle-modal {
   position: absolute;
@@ -82,37 +100,6 @@
 }
 
 /* form */
-.modal-title {
-  color: $title-text-color;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.15;
-  text-align: center;
-  padding-top: 40px;
-  margin-bottom: 12px;
-}
-.modal-form {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-.modal-form-input {
-  display: block;
-  width: 100%;
-  height: 40px;
-  border: 1px solid rgba(33, 33, 33, 0.2);
-  padding-left: 42px;
-  border-radius: 4px;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modal-form-input:focus {
-  outline: none;
-  border: 1px solid $secondary-text-color;
-}
-
-.modal-form-input:hover {
-  cursor: pointer;
-}
 
 .label-form {
   font-weight: 400;
@@ -133,9 +120,6 @@
   position: relative;
   margin-bottom: 10px;
 }
-.modal-form-input:focus ~ .icon-modal {
-  fill: $secondary-text-color;
-}
 
 .comment-message {
   width: 448px;
@@ -149,33 +133,18 @@
   border-radius: 4px;
   transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 14px;
+  &::placeholder {
+    color: rgba(117, 117, 117, 0.5);
+    font-size: 14px;
+  }
+  &:focus {
+    outline: none;
+    border: 1px solid $secondary-text-color;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 }
-.comment-message::placeholder {
-  color: rgba(117, 117, 117, 0.5);
-  font-size: 14px;
-}
-
-.comment-message:focus {
-  outline: none;
-  border: 1px solid $secondary-text-color;
-}
-.comment-message:hover {
-  cursor: pointer;
-}
-
-/* .chekbox-modal {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.71;
-  margin-left: 8px;
-} */
-
-/* .div-checkbox {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  align-items: center;
-} */
 
 .field {
   display: flex;
@@ -193,6 +162,13 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
   transition: background-image 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:checked + .icon-chekbox {
+    border-color: transparent;
+    background-color: $secondary-text-color;
+    background-image: url('../img/check.svg');
+    background-size: contain;
+    background-origin: border-box;
+  }
 }
 .label-modal {
   font-weight: 400;
@@ -208,13 +184,6 @@
 
   border: 2px solid #000000;
   border-radius: 2px;
-}
-.chekbox:checked + .icon-chekbox {
-  border-color: transparent;
-  background-color: $secondary-text-color;
-  background-image: url('../img/check.svg');
-  background-size: contain;
-  background-origin: border-box;
 }
 
 .submit-button {
